@@ -1,0 +1,203 @@
+/* Pre-set code */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  appearance: none;
+}
+
+html {
+  font-size: 62.5%;
+  background-color: #0f0f0f;
+  background-image: url("/images/home-image.jpg");
+  background-size: cover;
+  background-position-y: center;
+  background-repeat: no-repeat;
+}
+
+/* ------- ------- ---------- --------------------*/
+
+body {
+  position: relative;
+  min-height: 100vh;
+
+  background: radial-gradient(
+    186.36% 141.42% at 100% 0%,
+    rgba(0, 0, 0, 0) 0%,
+    #000 100%
+  );
+
+  font-size: 1.6rem;
+  display: flex;
+}
+
+/* .darkening-layer {
+  position: absolute;
+
+  min-height: 100%;
+  min-width: 100%;
+  transform: rotate(90deg);
+  background: radial-gradient(
+    186.36% 141.42% at 0% 0%,
+    rgba(0, 0, 0, 0) 0%,
+    #000 100%
+  );
+} */
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+}
+
+input[type="file"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-family: "Poppins", sans-serif;
+  color: #adadad;
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  height: 4.4rem;
+  width: 417px;
+  background-color: #a2bdd8;
+  border-radius: 15px;
+  font-family: "Poppins", sans-serif;
+}
+
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  background-color: #a2bdd8;
+  border-radius: 15px;
+  font-family: "Poppins", sans-serif;
+}
+
+label {
+  font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2 {
+  font-family: "Racing Sans One", sans-serif;
+  color: white;
+}
+h3 {
+  font-family: "Poppins", sans-serif;
+  color: white;
+  font-size: 2.5rem;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.navigation a {
+  color: white;
+}
+
+.navigation a:hover {
+  text-decoration: underline;
+}
+
+.navigation {
+  min-height: 100%;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  list-style: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 12.7%;
+
+  /* border: 1px solid white; */
+}
+
+.navigation::after {
+  content: "";
+  background: rgb(255, 255, 255);
+  position: absolute;
+
+  right: 0;
+  height: 77%;
+  width: 1px;
+}
+
+.navigation > ul {
+  /* border: 1px solid white; */
+
+  text-align: center;
+  height: 48%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+header {
+  /* border: 1px solid white; */
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  padding-top: 2%;
+}
+
+/* Home page styling */
+
+.home-container {
+  /* border: 1px solid white; */
+  margin-left: 5%;
+}
+
+.home-container > h1 {
+  font-size: 8.5rem;
+  margin-bottom: 0.4117647058823529em;
+}
+
+.home-cta-container {
+  display: flex;
+  gap: 2.1875em;
+}
+
+.home-btn-main,
+.home-btn-secondary {
+  color: #fff3eb;
+  /* color: #1a1a1a; */
+  font-size: 2rem;
+  padding: 0.625em 1.90625em;
+  border-radius: 2.4375em;
+  text-align: center;
+  font-family: "Racing Sans One", sans-serif;
+  border: #c81e15 0.125em solid;
+}
+
+.home-btn-main {
+  background: radial-gradient(50% 50% at 50% 50%, #801111 0%, #d51b1b 100%);
+}
+
+.home-btn-secondary {
+  background: radial-gradient(
+    83.19% 83.04% at 50% 50%,
+    rgba(0, 0, 0, 0.36) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  backdrop-filter: blur(3px);
+}
