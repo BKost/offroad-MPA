@@ -31,38 +31,51 @@
     </nav>
     <header class="marketplace-header">
       <h1>Register</h1>
-      <form class="register-form">
-        <div class="register-inputs-container">
+      <form
+        id="register-form"
+        class="register-form"
+        action="http://localhost:4000/register/"
+        method="POST"
+      >
+        <div id="inputs-container" class="register-inputs-container">
           <ul>
             <li>
-              <label for="">First name</label
-              ><input type="text" name="" id="" />
+              <label for="first_name">First name *</label
+              ><input required type="text" name="first_name" id="first_name" />
             </li>
             <li>
-              <label for="">Last name</label><input type="text" name="" id="" />
+              <label for="last_name">Last name *</label
+              ><input required type="text" name="last_name" id="last_name" />
             </li>
             <li>
-              <label for="">Username name</label
-              ><input type="text" name="" id="" />
+              <label for="user_name">Username name *</label
+              ><input required type="text" name="user_name" id="user_name" />
             </li>
           </ul>
           <ul>
             <li>
-              <label for="">Email</label><input type="text" name="" id="" />
+              <label for="email">Email *</label
+              ><input required type="text" name="email" id="email" />
             </li>
             <li>
-              <label for="">Password</label><input type="text" name="" id="" />
+              <label for="password">Password *</label
+              ><input required type="text" name="password" id="password" />
             </li>
             <li>
-              <label for="">Confirm password</label
-              ><input type="text" name="" id="" />
+              <label for="confirm_password">Confirm password *</label
+              ><input
+                required
+                type="text"
+                name="confirm_password"
+                id="confirm_password"
+              />
             </li>
           </ul>
         </div>
-        <button class="create-account-btn">Create account</button>
+        <button type="submit" class="create-account-btn">Create account</button>
       </form>
     </header>
 
-    <script src="/scripts/register.js"></script>
+    <script defer src="/scripts/register.js"></script>
   </body>
 </html>

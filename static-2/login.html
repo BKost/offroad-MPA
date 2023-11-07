@@ -31,14 +31,21 @@
     </nav>
     <header class="marketplace-header">
       <h1>Login</h1>
-      <form class="register-form">
+      <form
+        id="login-form"
+        class="register-form"
+        action="http://localhost:4000/login"
+        method="POST"
+      >
         <div class="register-inputs-container">
           <ul>
             <li>
-              <label for="">Email</label><input type="text" name="" id="" />
+              <label for="">Email</label
+              ><input type="text" required name="email" id="email" />
             </li>
             <li>
-              <label for="">Password</label><input type="text" name="" id="" />
+              <label for="">Password</label
+              ><input type="text" required name="password" id="password" />
             </li>
           </ul>
         </div>

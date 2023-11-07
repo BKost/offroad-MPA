@@ -1,51 +1,24 @@
 const { MongoClient } = require("mongodb");
 
-let db;
+const dbClient = new MongoClient(process.env.MONGO_URI);
 
-const connectDB = async (databaseName) => {
-  const client = new MongoClient(process.env.MONGO_URI);
+const getDB = (dbName) => {
+  return dbClient.db(dbName);
+};
+
+const connectToDatabase = async () => {
   try {
-    await client.connect();
-    db = client.db(databaseName);
+    await dbClient.connect();
+
     console.log("Connected to database");
   } catch (error) {
-    console.log(`Database connection error: ${error}`);
-  } finally {
-    await client.close();
-    console.log("DB Connection closed");
+    await dbClient.close();
+    console.log(`Error connecting to database: ${error}`);
   }
 };
 
-module.exports = { connectDB, db };
-
-// const connectDB = async (databaseName) => {
-//   const client = new MongoClient(process.env.MONGO_URI);
-//   try {
-//     await client.connect();
-//     const database = client.db(databaseName);
-
-//     console.log("Connected to database");
-//   } catch (error) {
-//     console.log(`Error connecting to database: ${error}`);
-//   } finally {
-//     await client.close();
-//   }
-// };
-
-// const connectDB = async (collectionName) => {
-//   const client = new MongoClient(process.env.MONGO_URI);
-//   try {
-//     await client.connect();
-//     const database = client.db("Offroad");
-//     const collection = database.collection(collectionName);
-
-//     const result = await collection.findOne({ name: "John" });
-//     console.log(result);
-
-//     console.log("Connected to database");
-//   } catch (error) {
-//     console.log(`Error connecting to database: ${error}`);
-//   } finally {
-//     await client.close();
-//   }
-// };
+module.exports = {
+  dbClient,
+  connectToDatabase,
+  getDB,
+};
