@@ -10,6 +10,7 @@ const { registerUser } = require("./controllers/register");
 const { login } = require("./controllers/login");
 
 const cookieParser = require("cookie-parser");
+const authMiddleware = require("./middleware/auth");
 
 // const db = getDB("Offroad");
 app.use(cookieParser());
@@ -47,8 +48,15 @@ app.get("/marketplace", (req, res) => {
 app.get("/my-posts", (req, res) => {
   res.status(200).sendFile(`${pathToStaticHtml}/my-posts.html`);
 });
-app.get("/user", (req, res) => {
+app.get("/user", authMiddleware, (req, res) => {
   res.status(200).sendFile(`${pathToStaticHtml}/user.html`);
+});
+
+app.get("/user/:userId", authMiddleware, (req, res) => {
+  console.log(req.params);
+  console.log(req.authorizedUser);
+
+  res.status(200).json({ message: "Send user info" });
 });
 
 const start = async () => {

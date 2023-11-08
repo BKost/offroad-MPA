@@ -1,24 +1,57 @@
 const { getDB } = require("../db");
+const jwt = require("jsonwebtoken");
 
 const db = getDB("Offroad");
+const usersCollection = db.collection("Users");
 
 const login = async (req, res) => {
-  // const eightHours = 1000 * 60 * 60 * 8;
+  const { password, email } = req.body;
 
-  // res.cookie("myCookie", "shortCookieSet", {
-  //   maxAge: 20000,
-  //   httpOnly: true,
-  // });
+  console.log(password, email);
 
-  // console.log(req.cookies);
+  if (!password || !email) {
+    return res.status(400).json({ message: "Please fill required fields" });
+  }
 
-  console.log(req.headers.cookie);
+  try {
+    const user = await usersCollection.findOne({ email });
 
-  res.json({ message: "logged in" });
+    if (!user) {
+      return res.json({ message: `Account with email ${email} doesnt exist.` });
+    }
 
-  // retrieve email and password, check if user exists in db
-  // if user exists send back cookie
-  //
+    if (user.password !== password) {
+      return res.json({ message: "Incorrect credentials" });
+    }
+
+    // console.log(user);
+    const { user_name, _id } = user;
+
+    const token = jwt.sign({ _id, user_name }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_LIFETIME,
+    });
+
+    console.log(req.cookies);
+
+    const oneDay = 1000 * 60 * 60 * 24;
+
+    res.cookie("token", token, {
+      maxAge: oneDay,
+      httpOnly: true,
+    });
+
+    res.cookie(
+      "user",
+      { user_name, _id },
+      {
+        maxAge: oneDay,
+      }
+    );
+
+    res.json({ user_name, message: "Cookie sent" });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = {

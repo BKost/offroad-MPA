@@ -59,14 +59,21 @@ aside {
 label {
   font-family: "Poppins", sans-serif;
   color: #dcdcdc;
-  /* margin-bottom: 0.5em; */
+  margin-bottom: 0.5em;
 }
 
-input {
-  background-color: #00000000;
+/* .user-profile-input {
+  background-color: rgba(0, 0, 0, 0);
   border-bottom: 1px solid #dcdcdc;
   border-radius: 0;
   color: white;
+} */
+
+input {
+  background-color: rgba(0, 0, 0, 0);
+  /* border-bottom: 1px solid #dcdcdc; */
+  /* border-radius: 0; */
+  /* color: white; */
 }
 
 .create-account-btn {
