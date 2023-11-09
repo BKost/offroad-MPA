@@ -8,6 +8,7 @@ const { connectToDatabase, getDB } = require("./db");
 
 const { registerUser } = require("./controllers/register");
 const { login } = require("./controllers/login");
+const { getUserData } = require("./controllers/user");
 
 const cookieParser = require("cookie-parser");
 const authMiddleware = require("./middleware/auth");
@@ -16,6 +17,8 @@ const authMiddleware = require("./middleware/auth");
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+// app.use("/auth", authMiddleware);
 
 app.use("/images", express.static("./images"));
 app.use("/styles", express.static("./styles"));
@@ -48,15 +51,16 @@ app.get("/marketplace", (req, res) => {
 app.get("/my-posts", (req, res) => {
   res.status(200).sendFile(`${pathToStaticHtml}/my-posts.html`);
 });
+
+app.get("/user/:userId", authMiddleware, getUserData);
+
+// async function getUserData(req, res) {
+//   console.log(req.params);
+//   res.status(200).json({ message: "Success" });
+// }
+
 app.get("/user", authMiddleware, (req, res) => {
   res.status(200).sendFile(`${pathToStaticHtml}/user.html`);
-});
-
-app.get("/user/:userId", authMiddleware, (req, res) => {
-  console.log(req.params);
-  console.log(req.authorizedUser);
-
-  res.status(200).json({ message: "Send user info" });
 });
 
 const start = async () => {

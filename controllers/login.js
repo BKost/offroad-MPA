@@ -7,7 +7,7 @@ const usersCollection = db.collection("Users");
 const login = async (req, res) => {
   const { password, email } = req.body;
 
-  console.log(password, email);
+  // console.log(password, email);
 
   if (!password || !email) {
     return res.status(400).json({ message: "Please fill required fields" });
@@ -31,7 +31,7 @@ const login = async (req, res) => {
       expiresIn: process.env.JWT_LIFETIME,
     });
 
-    console.log(req.cookies);
+    // console.log(req.cookies);
 
     const oneDay = 1000 * 60 * 60 * 24;
 

@@ -94,3 +94,8 @@ input {
   font-size: 2rem;
   padding: 15px 48px;
 }
+
+.nav-item-hidden {
+  display: none;
+  /* border: 1px solid white; */
+}
