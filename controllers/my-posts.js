@@ -24,11 +24,17 @@ const getPosts = async (req, res) => {
 };
 
 const uploadNewPost = async (req, res) => {
-  const data = req.body;
-
-  console.log(data);
-
-  res.json({ message: "Uploaded new post" });
+  // const imageFile = req.files.image;
+  // console.log(req.files.image);
+  // console.log("Success");
+  // const filePath = path.join(__dirname, `../uploads/${imageFile.name}`);
+  // try {
+  //   await imageFile.mv(filePath);
+  //   res.json({ message: "Upload Image" });
+  // } catch (error) {
+  //   console.log(error);
+  // }
+  res.json({ message: "Upload Image" });
 };
 
 module.exports = {

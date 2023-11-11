@@ -21,7 +21,7 @@ changeNavigationToSignedUser();
 fetchPosts();
 
 uploadPostForm.addEventListener("submit", uploadPost);
-fileInput.addEventListener("change", uploadImage);
+// fileInput.addEventListener("change", uploadImage);
 
 async function uploadImage(event) {
   const imageFile = event.target.files[0];
@@ -51,10 +51,11 @@ async function uploadPost(event) {
 
   const formDataObject = Object.fromEntries(formData.entries());
 
-  console.log(formDataObject);
-  console.log(formDataObject.image);
+  // console.log(formDataObject);
+  // console.log(formDataObject.image);
 
   const url = `${document.location.origin}/my-posts/${_id}`;
+  // const url = `${document.location.origin}/uploads`;
 
   try {
     const response = await fetch(url, {
@@ -63,9 +64,9 @@ async function uploadPost(event) {
         "Content-Type": "multipart/form-data",
       },
 
-      body: formData,
+      body: formDataObject,
     });
-
+    console.log();
     const data = await response.json();
     console.log(data);
   } catch (error) {
