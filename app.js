@@ -6,14 +6,19 @@ const { connectToDatabase, getDB } = require("./db");
 
 // const registerRouter = require("./routes/register");
 
+// Controllers
 const { registerUser } = require("./controllers/register");
 const { login } = require("./controllers/login");
-const { getUserData } = require("./controllers/user");
+const { getUserData, updateUser } = require("./controllers/user");
+const { getPosts, uploadNewPost } = require("./controllers/my-posts");
+const { uploadImage } = require("./controllers/uploadImage");
 
 const cookieParser = require("cookie-parser");
+const fileUpload = require("express-fileupload");
 const authMiddleware = require("./middleware/auth");
 
 // const db = getDB("Offroad");
+app.use(fileUpload());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -44,24 +49,40 @@ app.get("/login", (req, res) => {
 });
 app.post("/login", login);
 
+app.get("/logout", authMiddleware, (req, res) => {
+  // const { token } = req.cookies;
+
+  // res.clearCookie('token')
+  res.cookie("token", "token-cookie-deleted", { httpOnly: true, maxAge: 0 });
+  res.redirect("/");
+});
+
 app.get("/marketplace", (req, res) => {
   res.status(200).sendFile(`${pathToStaticHtml}/marketplace.html`);
 });
+
+app.get("/my-posts/:userId", getPosts);
+
+app.post("/my-posts/:userId", uploadNewPost);
+
+app.post("/uploads", uploadImage);
 
 app.get("/my-posts", (req, res) => {
   res.status(200).sendFile(`${pathToStaticHtml}/my-posts.html`);
 });
 
+app.get("/user", authMiddleware, (req, res) => {
+  res.status(200).sendFile(`${pathToStaticHtml}/user.html`);
+});
+
 app.get("/user/:userId", authMiddleware, getUserData);
+
+app.post("/user/:userId", authMiddleware, updateUser);
 
 // async function getUserData(req, res) {
 //   console.log(req.params);
 //   res.status(200).json({ message: "Success" });
 // }
-
-app.get("/user", authMiddleware, (req, res) => {
-  res.status(200).sendFile(`${pathToStaticHtml}/user.html`);
-});
 
 const start = async () => {
   try {

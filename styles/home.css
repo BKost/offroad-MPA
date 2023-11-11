@@ -70,6 +70,7 @@ input[type="file"] {
   -moz-appearance: none;
   font-family: "Poppins", sans-serif;
   color: #adadad;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 input {
@@ -92,6 +93,7 @@ textarea {
   background-color: #a2bdd8;
   border-radius: 15px;
   font-family: "Poppins", sans-serif;
+  padding: 1em;
 }
 
 label {

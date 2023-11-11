@@ -42,7 +42,12 @@
     <header class="marketplace-header">
       <h1>User profile</h1>
       <div class="user-profile-container">
-        <form id="user-profile-form" class="register-form">
+        <form
+          id="user-profile-form"
+          class="register-form"
+          action="http://localhost:4000/user"
+          method="POST"
+        >
           <div class="register-inputs-container">
             <ul>
               <li>
@@ -78,7 +83,7 @@
                 <label for="email">Email</label
                 ><input
                   class="user-profile-input"
-                  type="text"
+                  type="email"
                   name="email"
                   id="email"
                 />
@@ -103,9 +108,13 @@
               </li>
             </ul>
           </div>
-          <button class="create-account-btn">Edit account</button>
+          <button id="user-form-btn" class="create-account-btn">
+            Edit account
+          </button>
         </form>
-        <aside><button class="my-posts-btn">My posts</button></aside>
+        <aside>
+          <button id="my-posts-btn" class="my-posts-btn">My posts</button>
+        </aside>
       </div>
     </header>
 

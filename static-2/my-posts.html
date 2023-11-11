@@ -16,15 +16,25 @@
   <body>
     <nav class="navigation">
       <ul>
+        <li id="nav-profile" class="nav-item nav-item-hidden">
+          <a id="nav-user-a-tag" href="/user">My profile</a>
+        </li>
+        <li id="nav-my-posts" class="nav-item nav-item-hidden">
+          <a href="/my-posts">My posts</a>
+        </li>
         <li class="nav-item"><a href="http://localhost:4000/">Home</a></li>
         <li class="nav-item">
-          <a href="http://localhost:4000/marketplace">Marketplace</a>
+          <a href="/marketplace">Marketplace</a>
         </li>
-        <li class="nav-item">
-          <a href="http://localhost:4000/register">Register</a>
+
+        <li id="nav-register" class="nav-item">
+          <a href="/register">Register</a>
         </li>
-        <li class="nav-item">
-          <a href="http://localhost:4000/login">Login</a>
+        <li id="nav-login" class="nav-item">
+          <a href="/login">Login</a>
+        </li>
+        <li id="nav-logout" class="nav-item">
+          <a href="/logout">Logout</a>
         </li>
         <!-- <li class="nav-item"><a href=""></a></li> -->
       </ul>
@@ -137,7 +147,62 @@
       </section>
     </header>
     <div class="blur-container">
-      <!-- <form class="register-form">
+      <form id="upload-post-form" class="register-form">
+        <div class="register-inputs-container">
+          <ul>
+            <li>
+              <label for="">Title of the post</label
+              ><input type="text" name="" id="" />
+            </li>
+            <li>
+              <label for="price">Price</label
+              ><input type="text" name="price" id="price" />
+            </li>
+            <li>
+              <label for="brand">Brand</label
+              ><input type="text" name="brand" id="brand" />
+            </li>
+            <li>
+              <label for="model">Model</label
+              ><input type="text" name="model" id="model" />
+            </li>
+
+            <li for="file_input" class="file-input-item">
+              <label for="file_input">Upload Image</label
+              ><input
+                class="file-input"
+                type="file"
+                accept="image/*"
+                name="image"
+                id="file_input"
+              />
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <label for="year">Year of production</label
+              ><input type="text" name="year" id="year" />
+            </li>
+            <li>
+              <label for="mileage">Milleage</label
+              ><input type="text" name="mileage" id="mileage" />
+            </li>
+
+            <li>
+              <label for="">Description</label
+              ><textarea
+                class="update-description"
+                name=""
+                id=""
+                cols="30"
+                rows="12"
+              ></textarea>
+            </li>
+          </ul>
+        </div>
+        <button class="register-account-btn">Upload post</button>
+      </form>
+      <!-- <form id="update-post-form" class="register-form">
         <div class="register-inputs-container">
           <ul>
             <li>

@@ -154,7 +154,7 @@ header {
   align-items: center;
   overflow-y: scroll;
 
-  display: none;
+  /* display: none; */
 }
 
 .register-form {
@@ -192,10 +192,6 @@ label {
   width: 417px;
 }
 
-/* .file-input {
-  display: none;
-} */
-
 /* .file-input-item {
   border: 2px solid white;
   border-radius: 15px;
@@ -210,4 +206,8 @@ label {
   padding: 0.5em 1em;
   border-radius: 15px;
   font-size: 2rem;
+}
+.nav-item-hidden {
+  display: none;
+  /* border: 1px solid white; */
 }

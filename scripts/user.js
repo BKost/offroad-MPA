@@ -1,3 +1,5 @@
+"use strict";
+
 // User Inputs
 const userNameInput = document.getElementById("user_name");
 const firstNameInput = document.getElementById("first_name");
@@ -16,7 +18,40 @@ const navRegisterLI = document.getElementById("nav-register");
 const navLogoutLI = document.getElementById("nav-logout");
 const navMyPostsLI = document.getElementById("nav-my-posts");
 
+// Button
+const myPostsBtn = document.getElementById("my-posts-btn");
+myPostsBtn.addEventListener("click", () => {
+  // document.location.pathname = "/my-posts";
+  document.location.href = "/my-posts";
+});
+
 const { user_name, _id } = getDataFromCookie("user");
+
+let userProfileState = {
+  first_name: "",
+  last_name: "",
+  user_name: "",
+  email: "",
+  password: "",
+  confirm_password: "",
+};
+
+const inputsArray = [
+  userNameInput,
+  firstNameInput,
+  lastNameInput,
+  emailInput,
+  passwordInput,
+  confirmPasswordInput,
+];
+
+inputsArray.forEach((input) =>
+  input.addEventListener("keyup", updateUserPofileState)
+);
+
+userProfileForm.addEventListener("submit", handleFormSubmit);
+
+console.log(user_name);
 
 // fetchUserInfo();
 fetchUserInfo()
@@ -26,6 +61,52 @@ fetchUserInfo()
   .catch((error) => console.log(error));
 
 changeNavigationToSignedUser();
+
+function updateUserPofileState(event) {
+  const { name, value } = event.target;
+
+  userProfileState[name] = value;
+}
+
+async function handleFormSubmit(event) {
+  event.preventDefault();
+  const formData = new FormData(userProfileForm);
+
+  let formDataObj = Object.fromEntries(formData);
+
+  const stateEntries = Object.entries(userProfileState);
+
+  stateEntries.forEach((entry) => {
+    const [key, value] = entry;
+
+    if (value) {
+      formDataObj[key] = value;
+
+      console.log(formDataObj);
+    }
+  });
+
+  const path = window.location.origin;
+
+  try {
+    const response = await fetch(`${path}/user/${_id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(formDataObj),
+    });
+
+    const data = await response.json();
+
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+
+  // console.log(formDataObj);
+}
 
 function changeNavigationToSignedUser() {
   if (user_name) {
@@ -37,11 +118,11 @@ function changeNavigationToSignedUser() {
 }
 
 async function fetchUserInfo() {
-  const path = window.location.origin;
+  const url = `${document.location.href}/${_id}`;
 
   try {
     // const userInfo = await fetch(`${path}/user/?id=${_id}`);
-    const response = await fetch(`${path}/user/${_id}`);
+    const response = await fetch(url);
 
     const data = await response.json();
 
