@@ -9,7 +9,7 @@ const uploadImage = async (req, res) => {
 
   try {
     await imageFile.mv(filePath);
-    res.json({ message: "Upload Image" });
+    res.json({ imagePath: `/uploads/${imageFile.name}` });
   } catch (error) {
     console.log(error);
   }

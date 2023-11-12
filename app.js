@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // app.use("/auth", authMiddleware);
-
+app.use("/uploads", express.static("./uploads"));
 app.use("/images", express.static("./images"));
 app.use("/styles", express.static("./styles"));
 app.use("/scripts", express.static("./scripts"));
